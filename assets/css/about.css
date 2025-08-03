@@ -1,0 +1,224 @@
+/* ... a lot of the CSS is the same ... */
+:root {
+    --bg-color: #EEEEEE;
+    --card-border-color: #D1D1D1;
+    --text-color: #000000;
+    --text-muted: #555555;
+    --primary-yellow: #E5C965;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Amiri', serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.7; }
+.container { max-width: 1200px; margin-right: auto; margin-left: auto; padding-right: 20px; padding-left: 20px; }
+
+/* Header, Hero, Footer (Unchanged) */
+.site-header { padding: 15px 0; border-bottom: 1px solid var(--card-border-color); }
+
+.btn-primary { background-color: var(--primary-yellow); color: var(--text-color); font-weight: 700; padding: 10px 25px; border-radius: 4px; transition: opacity 0.3s ease; }
+.btn-primary:hover { opacity: 0.85; }
+.hero-section { text-align: center; padding: 70px 0; background-color: #D1D1D1; }
+.hero-section p { font-size: 2rem; font-weight: 700; line-height: 1.6; max-width: 900px; margin: 0 auto; }
+
+
+/* -------------------------------------- */
+/* 1. Services - Elegant Static Grid      */
+/* -------------------------------------- */
+.services-section {
+    padding-bottom: 0px;
+}
+
+.services-grid {
+    display: grid;
+    /* Create 3 equal-width columns */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px; /* Space between the cards */
+}
+
+.card {
+    background-color: var(--bg-color);
+    border: 1px solid var(--card-border-color);
+    text-align: center;
+    padding: 40px 20px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* This is the key for the smooth hover effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 { font-size: 1.75rem; font-weight: 700; margin-bottom: 20px; }
+.stars { color: var(--primary-yellow); font-size: 1.5rem; letter-spacing: 5px; }
+
+/* -------------------------------------- */
+/* 2. Testimonials - Coverflow Slider     */
+/* -------------------------------------- */
+.testimonial-section { padding: 50px 0 80px 0; position: relative; }
+.testimonial-slider { width: 100%; padding-top: 50px; padding-bottom: 50px; }
+.testimonial-slider .swiper-slide { background-position: center; background-size: cover; width: 450px; transition: filter 0.5s, opacity 0.5s, transform 0.5s; filter: blur(4px); opacity: 0.5; transform: scale(0.8); }
+.testimonial-slider .swiper-slide-active { filter: blur(0); opacity: 1; transform: scale(1); }
+.testimonial-card { width: 100%; height: 300px; background: #D1D1D1; border: 1px solid #C0C0C0; padding: 40px; display: flex; flex-direction: column; justify-content: center; text-align: center; }
+.testimonial-card .quote { font-size: 1.5rem; font-weight: 400; flex-grow: 1; }
+.testimonial-card .author { font-size: 1.1rem; font-weight: 700; color: var(--text-muted); }
+.swiper-pagination-bullet { background: var(--text-muted); opacity: 0.8; }
+.swiper-pagination-bullet-active { background-color: var(--primary-yellow); opacity: 1; }
+
+/* Responsive */
+
+@media (max-width: 768px) { 
+    .hero-section p { font-size: 1.5rem; } 
+    .testimonial-slider .swiper-slide { width: 85%; } 
+    .testimonial-card .quote { font-size: 1.2rem; }
+    .services-grid { grid-template-columns: 1fr; }
+}
+.counters-section {
+    background: #f8f9fa;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.counter-box {
+    display: inline-block;
+    width: 250px;
+    margin: 10px;
+    padding: 20px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.counter {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.counter-box p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.stars i {
+    color: #ffc107;
+}
+.intro-section {
+    padding: 80px 0;
+    background-color: #EEEEEE; /* يضمن أن خلفية القسم بيضاء */
+    text-align: center;
+}
+
+/* استايل العنوان المستقل */
+.section-title {
+    font-family: 'Amiri', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: #2c3539;
+    margin-bottom: 20px; /* مسافة بين العنوان والصندوق الذي يليه */
+}
+
+/* استايل الصندوق الذي يحتوي على النص فقط */
+.intro-text-box {
+    background-color: #f8f9fa; /* لون خلفية رمادي فاتح وأنيق للصندوق فقط */
+    padding: 45px;             /* مساحة داخلية حول النص */
+    border-radius: 8px;        /* حواف دائرية للصندوق */
+    max-width: 1100px;          /* تحديد عرض أقصى للصندوق (حجمه ليس كبيرًا) */
+    margin: 0 auto;            /* لتوسيط الصندوق في منتصف الصفحة */
+    border: 1px solid #e9ecef; /* إضافة إطار خفيف جدًا لمزيد من التحديد */
+}
+
+/* استايل الفقرة داخل الصندوق */
+.intro-paragraph {
+    font-family: 'Amiri', serif;
+    font-size: 26px;
+    color: #555555;
+    line-height: 1.8;
+    margin: 0; /* إزالة أي هوامش افتراضية من الفقرة نفسها */
+}
+.stats-section-bar {
+    padding: 60px 0;
+    background-color: #EEEEEE;
+}
+
+.stats-bar-wrapper {
+    display: flex;
+    justify-content: space-around; /* توزيع المسافات بالتساوي */
+    align-items: center;
+    background-color: #EEEEEE;
+    padding: 40px 20px;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+}
+
+.stat-item {
+    text-align: center;
+    position: relative;
+    padding: 0 40px;
+}
+
+/* إضافة خط فاصل أنيق بين العناصر */
+.stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 0; /* في المواقع العربية، الفاصل يكون على اليسار */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 60%;
+    background-color: #dee2e6;
+}
+
+.stat-item .stat-number { font-size: 50px; font-weight: 700; color: #2c3539; margin-bottom: 5px; }
+.stat-item .stat-label { font-size: 20px; color: #555555; margin: 0; }
+/* 
+  ==============================================
+    تعديل قسم الإحصائيات ليظهر في سطر واحد
+  ==============================================
+*/
+
+/* 
+  ==============================================
+    تعديل قسم الإحصائيات (النسخة المحدثة)
+  ==============================================
+*/
+
+.stats-section-bar .container {
+  /* تفعيل Flexbox لوضع العناصر بجانب بعضها */
+  display: flex;
+
+  /* 1. تجميع العناصر في منتصف الصفحة بدلًا من نشرها على الأطراف */
+  justify-content: center;
+
+  /* 2. محاذاة العناصر عموديًا في المنتصف */
+  align-items: center;
+  
+  /* 3. إضافة فجوة محددة بين العنوان والأرقام */
+  /* يمكنك التحكم في المسافة من هنا بتغيير الرقم */
+  gap: 60px; /* جرب قيمة بين 40px و 80px */
+  
+  /* للسماح للعناصر بالالتفاف تحت بعضها في الشاشات الصغيرة */
+  flex-wrap: wrap; 
+}
+
+
+/* --- باقي الكود يبقى كما هو --- */
+
+.stats-bar-wrapper {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .stats-section-bar .container {
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px; /* تقليل الفجوة في عرض الجوال */
+  }
+}

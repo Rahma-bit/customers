@@ -1,0 +1,255 @@
+/* ================================================= */
+/*          الأنماط العامة ومتغيرات الألوان            */
+/* ================================================= */
+:root {
+    --page-bg: #F2F2F2;
+    --text-color: #333333;
+    --white-color: #FFFFFF;
+    --primary-yellow: #ffc107;
+    --primary-dark: #2c3539;
+    --card-bg: #E0E0E0;
+    --font-main: 'Amiri', serif;
+}
+
+/* --- أنماط أساسية --- */
+body {
+    font-family: var(--font-main);
+    background-color: var(--page-bg);
+    color: var(--text-color);
+    direction: rtl;
+}
+
+.main-content {
+    padding: 4rem 0;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 3rem;
+}
+
+/* ================================================= */
+/*               تصميم شبكة البطاقات                */
+/* ================================================= */
+.jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* --- تصميم البطاقة مع تأثير الحركة (Hover) --- */
+.job-card {
+    background-color: var(--card-bg);
+    height: 250px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* الصورة التي تملأ البطاقة */
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* المحتوى المخفي الذي يظهر عند التأشير */
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(44, 53, 57, 0.95);
+    color: var(--white-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.card-overlay h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+/* أزرار "التفاصيل" و "ابدأ الخدمة" */
+.details-btn, .cta-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.details-btn {
+    background-color: transparent;
+    border: 2px solid var(--primary-yellow);
+    color: var(--primary-yellow);
+}
+
+.cta-btn {
+    background-color: var(--primary-yellow);
+    color: var(--primary-dark);
+}
+
+.details-btn:hover {
+    background-color: var(--primary-yellow);
+    color: var(--primary-dark);
+}
+.cta-btn:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* حركة التأشير */
+.job-card:hover .card-image {
+    transform: translateX(100%);
+}
+.job-card:hover .card-overlay {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ================================================= */
+/*          تصميم النافذة المنبثقة (Modal)            */
+/* ================================================= */
+
+/* الخلفية الداكنة للنافذة (الحاوية الرئيسية) */
+.modal {
+    display: none; /* <-- القاعدة الأهم: مخفية بشكل افتراضي */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* الصندوق الأبيض الذي يحتوي على التفاصيل */
+.modal-content {
+    background-color: var(--white-color);
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    animation: zoomIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* الصورة داخل النافذة */
+.modal-image {
+  display: block;
+  max-width: 100%; 
+  height: auto; 
+  margin: 0 auto 20px auto;
+  border-radius: 6px;
+}
+
+/* زر الإغلاق (X) */
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  color: #888;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  color: #000;
+}
+
+/* عنوان وتفاصيل النافذة */
+#modalTitle {
+  margin-bottom: 15px;
+  color: var(--text-color);
+  font-size: 2rem;
+}
+
+#modalDetails {
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+}
+
+#modalCtaBtn {
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* ================================================= */
+/*                    الأنيميشن                     */
+/* ================================================= */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ================================================= */
+/*                    تصميم متجاوب                  */
+/* ================================================= */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    .jobs-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+}
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* <-- هذا هو التعديل الأهم، سيمنع قص الصورة */
+    transition: transform 0.3s ease;
+}
+.job-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    cursor: pointer;
+    background-color: #dadada; /* لون احتياطي إذا لم تحمل الصورة */
+    
+    /* === هذه هي الخصائص الجديدة المهمة === */
+    background-size: contain;   /* تجعل الصورة كاملة داخل الإطار */
+    background-position: center; /* تضع الصورة في المنتصف تمامًا */
+    background-repeat: no-repeat; /* تمنع تكرار الصورة إذا كانت صغيرة */
+    
+    /* يمكننا تحديد ارتفاع ثابت للبطاقات لتوحيد شكلها */
+    min-height: 250px; /* أو أي ارتفاع تراه مناسبًا */
+    display: flex; /* لضمان أن المحتوى الداخلي (card-overlay) يتمدد بشكل صحيح */
+}
